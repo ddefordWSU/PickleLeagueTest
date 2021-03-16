@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <title>Pickle League Registration</title>
     <link rel="stylesheet" type="text/css" href="static/style.css">
+	  <style>
+    #t01 {
+  width: 100%;
+      border-spacing: 5px;
+padding: 15px;
+    border: 1px solid black;
+} 
+    </style>
   </head>
   <body>
   
@@ -15,13 +23,13 @@
     <h2>
       Current Roster
     </h2>
-	<h3> 
-	ID#   Name
-	</h3>
+	  <table id="t01">
+		  <tr><td><bf>ID#</bf></td><td><bf>   Name </bf></td></tr>
+	
     {% for person in roster %}
-    <h4>
-     {{ person.id }} <b>  </b> {{ person.name }}
-    </h4>
+<tr>
+	<td>{{ person.id }} </td><td> {{ person.name }}</td>
+    </tr>
 {% endfor %}
 
 <h2> Current Standings </h2>
