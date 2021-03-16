@@ -17,7 +17,9 @@ def index():
         for row in data:
             roster.append({
               "id": row[0],
-              "name": row[1]
+              "name": row[1],
+              "city": row[2],
+              "contact": row[3]            
             })
     return render_template("index.html", roster=roster)
 
@@ -272,7 +274,9 @@ def submitP():
                     for row in data:
                         roster.append({
                           "id": row[0],
-                          "name": row[1]
+                          "name": row[1],
+                          "city": row[2],
+                          "contact": row[3]            
                         })
                 return render_template("home.html", roster=roster)
             else:
@@ -289,7 +293,9 @@ def submitP():
                     for row in data:
                         roster.append({
                           "id": row[0],
-                          "name": row[1]
+                          "name": row[1],
+                          "city": row[2],
+                          "contact": row[3]            
                         })
                 return render_template("home.html", roster=roster)
             else:
@@ -306,9 +312,11 @@ def submitP():
                     for row in data:
                         roster.append({
                           "id": row[0],
-                          "name": row[1]
+                          "name": row[1],
+                          "city": row[2],
+                          "contact": row[3]            
                         })
-                return render_template("home.html", roster=roster)
+                    return render_template("home.html", roster=roster)
             else:
                 return render_template("wrongPass.html")               
 
@@ -323,7 +331,9 @@ def submitP():
                     for row in data:
                         roster.append({
                           "id": row[0],
-                          "name": row[1]
+                          "name": row[1],
+                          "city": row[2],
+                          "contact": row[3]            
                         })
                 return render_template("home.html", roster=roster,sess=sess)
             else:
