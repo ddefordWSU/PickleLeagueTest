@@ -271,7 +271,7 @@ def submitH():
             else:
                 return render_template("wrongPass.html")
             
-         if userdata['League'] == "LADV":
+        if userdata['League'] == "LADV":
             session["name"] = "Lewiston Advanced League"
             session["suff"] = "LADV"
             if userdata['pwd'] == "LADVPASS":
@@ -286,8 +286,8 @@ def submitH():
                 return render_template("home.html", roster=roster)
             else:
                 return render_template("wrongPass.html")           
-      
-         if userdata['League'] == "PP":
+
+        if userdata['League'] == "PP":
             session["name"] = "Pullman Public League"
             session["suff"] = "PP"
             if userdata['pwd'] == "PPPASS":
@@ -302,7 +302,7 @@ def submitH():
                 return render_template("home.html", roster=roster)
             else:
                 return render_template("wrongPass.html")               
-                
+
         if userdata['League'] == "T":
             session["name"] = "Test League"
             session["suff"] = "test"
