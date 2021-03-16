@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pickle League Standings</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+<style>
+    #t01 {
+  width: 100%;
+      border-spacing: 5px;
+padding: 10px;
+    border: 1px solid black;
+} 
+    </style>
+  </head>
+  <body>
+  
+  <h1>Head to Head</h1>
+  
+  <h3>Current League Standings</h3>
+  
+<table id="t01">
+  <tr> <td>  Name </td><td> ID# </td><td>Wins</td><td> Points </td><td> Games </td>
+    {% for team in teamlist %}
+    <tr>
+      <td>  {{ team.name }} </td><td> {{ team.id }} </td><td> {{ team.wins }} </td><td> {{ team.points }} </td><td> {{ team.games }} </td>
+    </tr>
+{% endfor %}
+    </table>
+
+    <a href ="/">Return to main screen.</a>
+  </body>
+</html>
