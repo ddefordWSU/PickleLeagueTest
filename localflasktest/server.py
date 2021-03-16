@@ -166,7 +166,7 @@ def submitT():
         for x in roster.keys():
             for y in roster.keys():
                 if g_dict_p[(int(x),int(y))] > 0:
-                    tlist.append([(roster[x],roster[y]),(x,y),w_dict_p[(int(x),int(y))],p_dict_p[(int(x),int(y))],g_dict_p[(int(x),int(y))])
+                    tlist.append([(roster[x],roster[y]),(x,y),w_dict_p[(int(x),int(y))],p_dict_p[(int(x),int(y))],g_dict_p[(int(x),int(y))]])
         
         tlist.sort(key=lambda x:x[2])
         tlist.reverse()
