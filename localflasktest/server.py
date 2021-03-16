@@ -175,6 +175,81 @@ def submitT():
                               
         return render_template("statsT.html", teamlist=teamlist)                          
 
+@app.route("/submitH", methods=["GET", "POST"])
+def submitH():
+    if request.method == "GET":
+        return redirect(url_for('index'))
+    elif request.method == "POST":
+        with open("./data/matches_test.csv",'r') as f:
+            reader = csv.reader(f)
+            matches = list(reader)
+            
+        with open('data/roster_test.csv') as csv_file:
+            data = csv.reader(csv_file, delimiter=',')
+            roster = {}
+            for row in data:
+                roster[row[0]] = row[1]
+        
+        
+        userdata = dict(request.form)
+
+
+        h2h_g = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
+        h2h_w = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
+        h2h_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
+
+        for game in matches:
+
+            game = [int(x) for x in game]
+
+            game = [game[0],(game[1],game[2],game[3]),(game[4],game[5],game[6])]
+
+            for i in range(2):
+                h2h_g[(game[1][0],game[2][0])] += 1
+                h2h_g[(game[1][0],game[2][1])] += 1
+                h2h_g[(game[1][1],game[2][0])] += 1
+                h2h_g[(game[1][1],game[2][1])] += 1
+                h2h_g[(game[2][0],game[1][0])] += 1
+                h2h_g[(game[2][0],game[1][1])] += 1
+                h2h_g[(game[2][1],game[1][0])] += 1
+                h2h_g[(game[2][1],game[1][1])] += 1
+
+                h2h_p[(game[1][0],game[2][0])] += game[1][2]
+                h2h_p[(game[1][0],game[2][1])] += game[1][2]
+                h2h_p[(game[1][1],game[2][0])] += game[1][2]
+                h2h_p[(game[1][1],game[2][1])] += game[1][2]
+                h2h_p[(game[2][0],game[1][0])] += game[2][2]
+                h2h_p[(game[2][0],game[1][1])] += game[2][2]
+                h2h_p[(game[2][1],game[1][0])] += game[2][2]
+                h2h_p[(game[2][1],game[1][1])] += game[2][2]
+
+                if game[1][2] == 11:
+
+                    h2h_w[(game[1][0],game[2][0])] += 1
+                    h2h_w[(game[1][0],game[2][1])] += 1
+                    h2h_w[(game[1][1],game[2][0])] += 1
+                    h2h_w[(game[1][1],game[2][1])] += 1
+                else:
+                    h2h_w[(game[2][0],game[1][0])] += 1
+                    h2h_w[(game[2][0],game[1][1])] += 1
+                    h2h_w[(game[2][1],game[1][0])] += 1
+                    h2h_w[(game[2][1],game[1][1])] += 1
+                    
+        Hlist = []
+        tlist = []
+        
+        x = userdata["player1"]
+        y = userdata["player2"]
+        
+        tlist.append([(roster[x],roster[y]),(x,y),w_dict_p[(int(x),int(y))],p_dict_p[(int(x),int(y))],g_dict_p[(int(x),int(y))]])
+        
+        #tlist.sort(key=lambda x:(x[2],x[3]))
+        #tlist.reverse()
+        for t in tlist:
+            Hlist.append({"name":t[0],"id":t[1],"wins":t[2],"points":t[3],"games":t[4]})
+                              
+        return render_template("statsT.html", Hlist=Hlist)                          
+
     
 if __name__ == "__main__":
   app.run()
