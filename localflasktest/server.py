@@ -255,6 +255,7 @@ def submitP():
     if request.method == "GET":
         return redirect(url_for('index'))
     elif request.method == "POST":
+        userdata = dict(request.form)
         if userdata['League'] == "LINT":
             session["name"] = "Lewiston Intermediate League"
             session["suff"] = "LINT"
