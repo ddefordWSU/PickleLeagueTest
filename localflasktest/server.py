@@ -264,6 +264,7 @@ def submitP():
         if userdata['League'] == "LINT":
             session["name"] = "Lewiston Intermediate League"
             session["suff"] = "LINT"
+            sess ={"name":"Test League"}
             if userdata['pwd'] == "LINTPASS":
                 with open('data/roster_LINT.csv') as csv_file:
                     data = csv.reader(csv_file, delimiter=',')
@@ -280,6 +281,7 @@ def submitP():
         if userdata['League'] == "LADV":
             session["name"] = "Lewiston Advanced League"
             session["suff"] = "LADV"
+            sess ={"name":"Test League"}
             if userdata['pwd'] == "LADVPASS":
                 with open('data/roster_LADV.csv') as csv_file:
                     data = csv.reader(csv_file, delimiter=',')
@@ -296,6 +298,7 @@ def submitP():
         if userdata['League'] == "PP":
             session["name"] = "Pullman Public League"
             session["suff"] = "PP"
+            sess ={"name":"Test League"}
             if userdata['pwd'] == "PPPASS":
                 with open('data/roster_PP.csv') as csv_file:
                     data = csv.reader(csv_file, delimiter=',')
@@ -312,6 +315,7 @@ def submitP():
         if userdata['League'] == "T":
             session["name"] = "Test League"
             session["suff"] = "test"
+            sess ={"name":"Test League"}
             if userdata['pwd'] == "test":
                 with open('data/roster_test.csv') as csv_file:
                     data = csv.reader(csv_file, delimiter=',')
@@ -321,7 +325,7 @@ def submitP():
                           "id": row[0],
                           "name": row[1]
                         })
-                return render_template("home.html", roster=roster)
+                return render_template("home.html", roster=roster,sess=sess)
             else:
                 return render_template("wrongPass.html")
 
