@@ -47,11 +47,11 @@ padding: 15px;
       Current Roster
 	</h2> </div>
 	  <table id="t01" class="center">
-		  <tr><td><bf>ID#</bf></td><td><bf>   Name </bf></td></tr>
+		  <tr><td><bf>ID#</bf></td><td><bf>   Name </bf></td><td><bf>   City </bf></td><td><bf>   Contact </bf></td></tr>
 	
     {% for person in roster %}
 <tr>
-	<td>{{ person.id }} </td><td> {{ person.name }}</td>
+	<td>{{ person.id }} </td><td> {{ person.name }}</td><td> {{ person.city }}</td><td> {{ person.contact }}</td>
     </tr>
 {% endfor %}
 	  </table>
