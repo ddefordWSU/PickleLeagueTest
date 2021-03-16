@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pickle League Registration</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+	  <style>
+    #t01 {
+      border-spacing: 5px;
+padding: 15px;
+    border: 1px solid black;
+} 
+    </style>
+  </head>
+  <body>
+  
+  <h1> Pickleball League Info </h1>
+  
+  <p> Welcome to the homepage for the {{ sess.name }}. The Roster section below shows the list of current registered players and their ID numbers. 
+    If you don't have an ID yet, use the New Registration form below to get one.
+    If you already have an ID, you can use that to enter your match results or view the current league standings. </p>
+    
+     
+<form method="post" action="/submitR">
+			  <p><input type="submit" value="New Registration"></p>
+      </form>
+    
+<form method="post" action="/submitM">
+			  <p><input type="submit" value="Record Match"></p>
+      </form>
+
+<form method="post" action="/submitS">
+			  <p><input type="submit" value="View Current Standings"></p>
+      </form>
+  
+    <h2>
+      Current Roster
+    </h2>
+	  <table id="t01">
+		  <tr><td><bf>ID#</bf></td><td><bf>   Name </bf></td></tr>
+	
+    {% for person in roster %}
+<tr>
+	<td>{{ person.id }} </td><td> {{ person.name }}</td>
+    </tr>
+{% endfor %}
+	  </table>
+
+
+  </body>
+</html>
