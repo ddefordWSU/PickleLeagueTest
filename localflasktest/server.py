@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from flask_session import Session
+#from flask_session import Session
 import csv
 import json
 
 app = Flask(__name__)
-SESSION_TYPE = 'redis'
-app.config.from_object(__name__)
-Session(app)
+#SESSION_TYPE = 'redis'
+#app.config.from_object(__name__)
+#Session(app)
 
 
 @app.route("/")
