@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pickle League Registration</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+	  <style>
+    #t01 {
+      border-spacing: 5px;
+padding: 15px;
+    border: 1px solid black;
+} 
+    </style>
+  </head>
+  <body>
+  
+
+<h2> Current League Standings </h2>
+	  <p> The links below will take you to the current league standings:</p>
+	  <ul>
+		  <li> <form method="post" action="/submitI">
+			  <p><input type="submit" value="View Individual Standings"></p>
+			  <p>Player ID# (optional): <input type="text" name="player"></p> </form>
+			   </li>
+		<li> <form method="post" action="/submitT">
+			<p><input type="submit" value="View Team Standings"></p>
+			  <p>Player 1 ID# (optional): <input type="text" name="player1"></p>
+			<p>Player 2 ID# (optional): <input type="text" name="player2"></p> </form>
+			 </li>
+		<li> <form method="post" action="/submitH">
+			<p><input type="submit" value="Head-to-Head Stats"></p>
+			  <p>Player 1 ID#: <input type="text" name="player1"></p>
+			<p>Player 2 ID#: <input type="text" name="player2"></p> </form>
+			 </li>
+	  </ul>
+
+
+  </body>
+</html>
