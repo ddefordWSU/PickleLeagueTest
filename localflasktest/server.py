@@ -7,7 +7,7 @@ app = Flask(__name__)
 #SESSION_TYPE = 'redis'
 #app.config.from_object(__name__)
 #Session(app)
-
+app.secret_key = '1769’
 
 @app.route("/")
 def index():
