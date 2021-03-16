@@ -346,7 +346,7 @@ def submitP():
                 return redirect(url_for('index'))
             elif request.method == "POST":
                 #userdata = dict(request.form)
-                sess = {"name":session.get("name")
+                sess = {"name":session.get("name")}
                 return render_template("register.html", sess=sess)
                     
          @app.route("/submitM", methods=["GET", "POST"])
@@ -355,7 +355,7 @@ def submitP():
                 return redirect(url_for('index'))
             elif request.method == "POST":
                 #userdata = dict(request.form)
-                sess = {"name":session.get("name")
+                sess = {"name":session.get("name")}
                 return render_template("enter.html", sess=sess)
  
                         
@@ -365,7 +365,7 @@ def submitP():
                 return redirect(url_for('index'))
             elif request.method == "POST":
                 #userdata = dict(request.form)
-                sess = {"name":session.get("name")
+                sess = {"name":session.get("name")}
                 return render_template("standings.html", sess=sess)
 
                         
