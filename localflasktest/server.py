@@ -117,5 +117,64 @@ def submitI():
                               
         return render_template("statsI.html", plist=plist)                          
 
+@app.route("/submitT", methods=["GET", "POST"])
+def submitT():
+    if request.method == "GET":
+        return redirect(url_for('index'))
+    elif request.method == "POST":
+        with open("./data/matches_test.csv",'r') as f:
+            reader = csv.reader(f)
+            matches = list(reader)
+            
+        with open('data/roster_test.csv') as csv_file:
+            data = csv.reader(csv_file, delimiter=',')
+            roster = {}
+            for row in data:
+                roster[row[0]] = row[1]
+
+        g_dict = {int(x):0 for x in roster.keys()}
+        w_dict = {int(x):0 for x in roster.keys()}
+        p_dict = {int(x):0 for x in roster.keys()}
+
+        g_dict_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
+        w_dict_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
+        p_dict_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
+
+        for game in matches:
+
+            game = [int(x) for x in game]
+
+            game = [game[0],(game[1],game[2],game[3]),(game[4],game[5],game[6])]
+
+            for i in range(2):
+                pair = game[i+1]
+                g_dict[pair[0]] +=1
+                g_dict_p[(pair[0],pair[1])] +=1
+                g_dict_p[(pair[1],pair[0])] +=1
+
+                if pair[2] ==11:
+                    w_dict[pair[0]] +=1
+                    w_dict_p[(pair[0],pair[1])] +=1
+                    p_dict[pair[0]] +=11
+                    p_dict_p[(pair[0],pair[1])] +=11
+                else:
+                    p_dict[pair[0]] += pair[2]
+                    p_dict_p[(pair[0],pair[1])] +=pair[2]
+
+        plist = []
+        tlist = []
+        for x in roster.keys():
+            for y in roster.keys():
+                if g_dict_p[(int(x),int(y))] > 0:
+                    tlist.append([(roster[x],roster[y]),(x,y),w_dict_p[(int(x),int(y))],p_dict_p[(int(x),int(y))],g_dict_p[(int(x),int(y))])
+        
+        tlist.sort(key=lambda x:x[2])
+        tlist.reverse()
+        for t in tlist:
+            plist.append({"name":t[0],"id":t[1],"wins":t[2],"points":t[3],"games":t[4]})
+                              
+        return render_template("statsT.html", plist=plist)                          
+
+    
 if __name__ == "__main__":
   app.run()
