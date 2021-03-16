@@ -21,7 +21,7 @@ padding: 15px;
   
 <table id="t01">
   <tr> <td>  Name </td><td> ID# </td><td>Wins</td><td> Points </td><td> Games </td>
-    {% for team in tlist %}
+    {% for team in plist %}
     <tr>
       <td>  {{ team.name }} </td><td> {{ team.id }} </td><td> {{ team.wins }} </td><td> {{ team.points }} </td><td> {{ team.games }} </td>
     </tr>
