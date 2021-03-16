@@ -251,7 +251,7 @@ def submitH():
         return render_template("statsH2H.html", Hlist=Hlist)                          
 
 @app.route("/submitP", methods=["GET", "POST"])
-def submitH():
+def submitP():
     if request.method == "GET":
         return redirect(url_for('index'))
     elif request.method == "POST":
