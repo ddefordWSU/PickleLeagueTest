@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pickle League Registration</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+	  <style>
+    #t01 {
+      border-spacing: 5px;
+padding: 15px;
+    border: 1px solid black;
+} 
+    </style>
+  </head>
+  <body>
+  
+  <h1>Lewiston Pickleball League Info </h1>
+  
+  <p>This page allows you to register and enter match data for the Guerilla & Nellyville Pickleball Ladder League. The Roster section below shows the list of current registered players and their ID numbers. If you already have an ID, you can use that to enter your match results at the bottom of the page. If you don't have an ID yet, use the New Registration form below to get one. </p>
+	  <p> The links in the Standings section show the updated standings for individuals, teams, and head-to-head matchups. </p>
+  
+    <h2>
+      Current Roster
+    </h2>
+	  <table id="t01">
+		  <tr><td><bf>ID#</bf></td><td><bf>   Name </bf></td></tr>
+	
+    {% for person in roster %}
+<tr>
+	<td>{{ person.id }} </td><td> {{ person.name }}</td>
+    </tr>
+{% endfor %}
+	  </table>
+<h2> Current Standings </h2>
+	  <p> The links below will take you to the current league standings:</p>
+	  <ul>
+		  <li> <form method="post" action="/submitI">
+			  <p><input type="submit" value="View Individual Standings"></p>
+			  <p>Player ID# (optional): <input type="text" name="player"></p> </form>
+			   </li>
+		<li> <form method="post" action="/submitT">
+			<p><input type="submit" value="View Team Standings"></p>
+			  <p>Player 1 ID# (optional): <input type="text" name="player1"></p>
+			<p>Player 2 ID# (optional): <input type="text" name="player2"></p> </form>
+			 </li>
+		<li> <form method="post" action="/submitH">
+			<p><input type="submit" value="Head-to-Head Stats"></p>
+			  <p>Player 1 ID#: <input type="text" name="player1"></p>
+			<p>Player 2 ID#: <input type="text" name="player2"></p> </form>
+			 </li>
+	  </ul>
+
+<h2> Record Match Result </h2>
+
+<p> Enter the ID#s and score for your match below.  </p>
+
+<form method="post" action="/submit2">
+    <p>Team 1 Player 1 (ID#): <input type="text" name="p1"></p>
+    <p>Team 1 Player 2 (ID#): <input type="text" name="p2"></p>
+    <p>Team 2 Player 1 (ID#): <input type="text" name="p3"></p>
+    <p>Team 2 Player 2 (ID#): <input type="text" name="p4"></p>
+    <p>Team 1 Score: <input type="text" name="s1"></p>
+    <p>Team 2 Score: <input type="text" name="s2"></p>
+
+    <p><input type="submit" value="Submit Match"></p>
+</form>
+
+<h2> New Registration </h2>
+
+<p> If your name doesn't appear in the list above, submit your name below to get an ID# for entering matches. </p>
+
+<form method="post" action="/submit">
+    <p>First Name: <input type="text" name="fname"></p>
+    <p>Last Initial: <input type="text" name="lname"></p>
+    <p><input type="submit" value="Register"></p>
+</form>
+
+
+
+  </body>
+</html>
