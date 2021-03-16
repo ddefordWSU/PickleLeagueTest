@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from flask.ext.session import Session
+from flask_session import Session
 import csv
 import json
 
