@@ -238,9 +238,8 @@ def submitH():
         Hlist = []
         tlist = []
         
-        x = userdata["player1"]
-        print(x)
-        y = userdata["player2"]
+        x = userdata["player1"][0]
+        y = userdata["player2"][0]
         
         tlist.append([(roster[x],roster[y]),(x,y),w_dict_p[(int(x),int(y))],p_dict_p[(int(x),int(y))],g_dict_p[(int(x),int(y))]])
         
