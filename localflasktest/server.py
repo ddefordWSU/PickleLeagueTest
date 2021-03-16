@@ -349,7 +349,7 @@ def submitP():
                 sess = {"name":session.get("name")}
                 return render_template("register.html", sess=sess)
                     
-         @app.route("/submitM", methods=["GET", "POST"])
+        @app.route("/submitM", methods=["GET", "POST"])
         def submitM():
             if request.method == "GET":
                 return redirect(url_for('index'))
