@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pickle League Registration</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+  </head>
+  <body>
+  
+  <h1>Lewiston Pickleball League Info </h1>
+  
+  <p>This page allows you to register and enter match data for the Guerilla & Nellyville Pickleball Ladder League. The Roster section below shows the list of current registered players and their ID numbers. If you already have an ID, you can use that to enter your match results at the bottom of the page. If you don't have an ID yet, use the New Registration form below to get one. </p>
+  
+  
+    <h2>
+      Current Roster
+    </h2>
+	<h3> 
+	ID#   Name
+	</h3>
+    {% for person in roster %}
+    <h4>
+     {{ person.id }} <b>  </b> {{ person.name }}
+    </h4>
+{% endfor %}
+
+
+<h1> Record Match Result </h1>
+
+<p> Enter the ID#s and score for your match below. Current league standings and stats can be seen 
+<a href="http://math.wsu.edu/faculty/ddeford/PickleLeagueStandings.html"> here</a>.</p>
+
+<form method="post" action="/submit2">
+    <p>Team 1 Player 1 (ID#): <input type="text" name="p1"></p>
+    <p>Team 1 Player 2 (ID#): <input type="text" name="p2"></p>
+    <p>Team 2 Player 1 (ID#): <input type="text" name="p3"></p>
+    <p>Team 2 Player 2 (ID#): <input type="text" name="p4"></p>
+    <p>Team 1 Score: <input type="text" name="s1"></p>
+    <p>Team 2 Score: <input type="text" name="s2"></p>
+
+    <p><input type="submit" value="Submit Match"></p>
+</form>
+
+<h2> New Registration </h2>
+
+<p> If your name doesn't appear in the list above, submit your name below to get an ID# for entering matches. </p>
+
+<form method="post" action="/submit">
+    <p>First Name: <input type="text" name="fname"></p>
+    <p>Last Initial: <input type="text" name="lname"></p>
+    <p><input type="submit" value="Register"></p>
+</form>
+
+
+
+  </body>
+</html>
