@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pickle League Registration</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+	  <style>
+    #t01 {
+      border-spacing: 5px;
+padding: 15px;
+    border: 1px solid black;
+} 
+    </style>
+  </head>
+  <body>
+  
+ 
+<h2> New Registration </h2>
+
+<p> If you weren't listed on the {{ sess.name }} roster, submit your name below to get an ID# for entering matches. </p>
+
+<form method="post" action="/submit">
+    <p>First Name: <input type="text" name="fname"></p>
+    <p>Last Initial: <input type="text" name="lname"></p>
+    <p><input type="submit" value="Register"></p>
+</form>
+
+
+
+  </body>
+</html>
