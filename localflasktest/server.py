@@ -105,9 +105,15 @@ def submitI():
                     p_dict_p[(pair[0],pair[1])] +=pair[2]
 
         plist = []
+        tlist = []
         for x in roster.keys():
             if g_dict[int(x)] > 0:
-                plist.append({"name":roster[x],"id":x,"wins":w_dict[int(x)],"points":p_dict[int(x)],"games":g_dict[int(x)]})
+                tlist.append([roster[x],x,w_dict[int(x)],p_dict[int(x)],g_dict[int(x)]])
+        
+        tlist.sort(key=lambda x:x[2])
+        tlist.reverse()
+        for t in tlist:
+            plist.append({"name":t[0],"id":t[1],"wins":t[2],"points":t[3],"games":t[4]})
                               
         return render_template("statsI.html", plist=plist)                          
 
