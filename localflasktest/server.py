@@ -107,7 +107,7 @@ def submit2():
         plist = []
         for x in roster.keys():
             if g_dict[int(x)] > 0:
-                plist.append({"name":roster[x],"id":x,"wins":w_dict[int(x)],"points":p_dict[int(x)],"games":g_dict[int(x)]))
+                plist.append({"name":roster[x],"id":x,"wins":w_dict[int(x)],"points":p_dict[int(x)],"games":g_dict[int(x)]})
                               
         return render_template("statsI.html", plist=plist)                          
 
