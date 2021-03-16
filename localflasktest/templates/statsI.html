@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>Pickle League Standings</title>
     <link rel="stylesheet" type="text/css" href="static/style.css">
+     #t01 {
+  width: 100%;
+      border-spacing: 5px;
+padding: 15px;
+    border: 1px solid black;
+} 
   </head>
   <body>
   
@@ -11,7 +17,7 @@
   
   <h3>Current League Standings</h3>
   
-<table>
+<table id="t01">
   <tr> <td>  Name </td><td> ID# </td><td>Wins</td><td> Points </td><td> Games </td>
     {% for person in plist %}
     <tr>
