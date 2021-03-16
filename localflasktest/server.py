@@ -61,7 +61,7 @@ def submit2():
     return f"Your match has been recorded as match ID #: {len(matches)}"# \n Return to main webpage: {url_for('index')}"
 
 @app.route("/submitI", methods=["GET", "POST"])
-def submit2():
+def submitI():
     if request.method == "GET":
         return redirect(url_for('index'))
     elif request.method == "POST":
