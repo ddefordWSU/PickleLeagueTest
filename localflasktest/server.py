@@ -266,7 +266,7 @@ def submitP():
         if userdata['League'] == "LINT":
             session["name"] = "Lewiston Intermediate League"
             session["suff"] = "LINT"
-            sess ={"name":"Test League"}
+            sess ={"name":"Lewiston Intermediate League"}
             if userdata['pwd'] == "LINTPASS":
                 with open('data/roster_LINT.csv') as csv_file:
                     data = csv.reader(csv_file, delimiter=',')
@@ -278,14 +278,14 @@ def submitP():
                           "city": row[2],
                           "contact": row[3]            
                         })
-                return render_template("home.html", roster=roster)
+                return render_template("home.html", roster=roster,sess=sess)
             else:
                 return render_template("wrongPass.html")
             
         if userdata['League'] == "LADV":
             session["name"] = "Lewiston Advanced League"
             session["suff"] = "LADV"
-            sess ={"name":"Test League"}
+            sess ={"name":"Lewiston Advanced League"}
             if userdata['pwd'] == "LADVPASS":
                 with open('data/roster_LADV.csv') as csv_file:
                     data = csv.reader(csv_file, delimiter=',')
@@ -297,14 +297,14 @@ def submitP():
                           "city": row[2],
                           "contact": row[3]            
                         })
-                return render_template("home.html", roster=roster)
+                return render_template("home.html", roster=roster,sess=sess)
             else:
                 return render_template("wrongPass.html")           
 
         if userdata['League'] == "PP":
             session["name"] = "Pullman Public League"
             session["suff"] = "PP"
-            sess ={"name":"Test League"}
+            sess ={"name":"Pullman Public League"}
             if userdata['pwd'] == "PPPASS":
                 with open('data/roster_PP.csv') as csv_file:
                     data = csv.reader(csv_file, delimiter=',')
@@ -316,7 +316,7 @@ def submitP():
                           "city": row[2],
                           "contact": row[3]            
                         })
-                    return render_template("home.html", roster=roster)
+                    return render_template("home.html", roster=roster,sess=sess)
             else:
                 return render_template("wrongPass.html")               
 
