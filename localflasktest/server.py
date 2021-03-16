@@ -110,7 +110,7 @@ def submitI():
             if g_dict[int(x)] > 0:
                 tlist.append([roster[x],x,w_dict[int(x)],p_dict[int(x)],g_dict[int(x)]])
         
-        tlist.sort(key=lambda x:x[2])
+        tlist.sort(key=lambda x:(x[2],x[3]))
         tlist.reverse()
         for t in tlist:
             plist.append({"name":t[0],"id":t[1],"wins":t[2],"points":t[3],"games":t[4]})
@@ -168,7 +168,7 @@ def submitT():
                 if g_dict_p[(int(x),int(y))] > 0:
                     tlist.append([(roster[x],roster[y]),(x,y),w_dict_p[(int(x),int(y))],p_dict_p[(int(x),int(y))],g_dict_p[(int(x),int(y))]])
         
-        tlist.sort(key=lambda x:x[2])
+        tlist.sort(key=lambda x:(x[2],x[3]))
         tlist.reverse()
         for t in tlist:
             teamlist.append({"name":t[0],"id":t[1],"wins":t[2],"points":t[3],"games":t[4]})
