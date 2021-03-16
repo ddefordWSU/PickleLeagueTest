@@ -5,6 +5,12 @@
     <title>Pickle League Registration</title>
     <link rel="stylesheet" type="text/css" href="static/style.css">
 	  <style>
+		  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 		  h1 {text-align: center;}
 p {text-align: center;}
 div {text-align: center;}
@@ -36,11 +42,11 @@ padding: 15px;
 <form method="post" action="/submitS">
 			  <p><input type="submit" value="View Current Standings"></p>
       </form>
-  
+<div>  
     <h2>
       Current Roster
-    </h2>
-	  <table id="t01">
+	</h2> </div>
+	  <table id="t01" class="center">
 		  <tr><td><bf>ID#</bf></td><td><bf>   Name </bf></td></tr>
 	
     {% for person in roster %}
