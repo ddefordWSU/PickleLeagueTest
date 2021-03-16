@@ -161,7 +161,7 @@ def submitT():
                     p_dict[pair[0]] += pair[2]
                     p_dict_p[(pair[0],pair[1])] +=pair[2]
 
-        plist = []
+        teamlist = []
         tlist = []
         for x in roster.keys():
             for y in roster.keys():
@@ -171,9 +171,9 @@ def submitT():
         tlist.sort(key=lambda x:x[2])
         tlist.reverse()
         for t in tlist:
-            plist.append({"name":t[0],"id":t[1],"wins":t[2],"points":t[3],"games":t[4]})
+            teamlist.append({"name":t[0],"id":t[1],"wins":t[2],"points":t[3],"games":t[4]})
                               
-        return render_template("statsT.html", plist=plist)                          
+        return render_template("statsT.html", teamlist=teamlist)                          
 
     
 if __name__ == "__main__":
