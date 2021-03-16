@@ -21,9 +21,9 @@ padding: 10px;
   
 <table id="t01">
   <tr> <td>  Name </td><td> ID# </td><td>Wins</td><td> Points </td><td> Games </td>
-    {% for team in teamlist %}
+    {% for H in Hlist %}
     <tr>
-      <td>  {{ team.name }} </td><td> {{ team.id }} </td><td> {{ team.wins }} </td><td> {{ team.points }} </td><td> {{ team.games }} </td>
+      <td>  {{ H.name }} </td><td> {{ H.id }} </td><td> {{ H.wins }} </td><td> {{ H.points }} </td><td> {{ H.games }} </td>
     </tr>
 {% endfor %}
     </table>
