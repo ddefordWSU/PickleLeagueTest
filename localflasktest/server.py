@@ -241,7 +241,7 @@ def submitH():
         x = userdata["player1"][0]
         y = userdata["player2"][0]
         
-        tlist.append([(roster[x],roster[y]),(x,y),w_dict_p[(int(x),int(y))],p_dict_p[(int(x),int(y))],g_dict_p[(int(x),int(y))]])
+        tlist.append([(roster[x],roster[y]),(x,y),h2h_w[(int(x),int(y))],h2h_p[(int(x),int(y))],h2h_g[(int(x),int(y))]])
         
         #tlist.sort(key=lambda x:(x[2],x[3]))
         #tlist.reverse()
