@@ -15,7 +15,7 @@
   <tr> <td>  Name </td><td> ID# </td><td>Wins</td><td> Points </td><td> Games </td>
     {% for person in plist %}
     <tr>
-      <td>  {{ plist.name }} </td><td> {{ plist.id }} </td><td> {{ plist.wins }} </td><td> {{ plist.points }} </td><td> {{ plist.games }} </td>
+      <td>  {{ person.name }} </td><td> {{ person.id }} </td><td> {{ person.wins }} </td><td> {{ person.points }} </td><td> {{ person.games }} </td>
     </tr>
 {% endfor %}
     </table>
