@@ -248,7 +248,7 @@ def submitH():
         for t in tlist:
             Hlist.append({"name":t[0],"id":t[1],"wins":t[2],"points":t[3],"games":t[4]})
                               
-        return render_template("statsHtH.html", Hlist=Hlist)                          
+        return render_template("statsH2H.html", Hlist=Hlist)                          
 
     
 if __name__ == "__main__":
