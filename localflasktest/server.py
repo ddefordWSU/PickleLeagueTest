@@ -250,6 +250,78 @@ def submitH():
                               
         return render_template("statsH2H.html", Hlist=Hlist)                          
 
-    
+@app.route("/submitP", methods=["GET", "POST"])
+def submitH():
+    if request.method == "GET":
+        return redirect(url_for('index'))
+    elif request.method == "POST":
+        if userdata['League'] == "LINT":
+            session["name"] = "Lewiston Intermediate League"
+            session["suff"] = "LINT"
+            if userdata['pwd'] == "LINTPASS":
+                with open('data/roster_LINT.csv') as csv_file:
+                    data = csv.reader(csv_file, delimiter=',')
+                    roster = []
+                    for row in data:
+                        roster.append({
+                          "id": row[0],
+                          "name": row[1]
+                        })
+                return render_template("home.html", roster=roster)
+            else:
+                return render_template("wrongPass.html")
+            
+         if userdata['League'] == "LADV":
+            session["name"] = "Lewiston Advanced League"
+            session["suff"] = "LADV"
+            if userdata['pwd'] == "LADVPASS":
+                with open('data/roster_LADV.csv') as csv_file:
+                    data = csv.reader(csv_file, delimiter=',')
+                    roster = []
+                    for row in data:
+                        roster.append({
+                          "id": row[0],
+                          "name": row[1]
+                        })
+                return render_template("home.html", roster=roster)
+            else:
+                return render_template("wrongPass.html")           
+      
+         if userdata['League'] == "PP":
+            session["name"] = "Pullman Public League"
+            session["suff"] = "PP"
+            if userdata['pwd'] == "PPPASS":
+                with open('data/roster_PP.csv') as csv_file:
+                    data = csv.reader(csv_file, delimiter=',')
+                    roster = []
+                    for row in data:
+                        roster.append({
+                          "id": row[0],
+                          "name": row[1]
+                        })
+                return render_template("home.html", roster=roster)
+            else:
+                return render_template("wrongPass.html")               
+                
+        if userdata['League'] == "T":
+            session["name"] = "Test League"
+            session["suff"] = "test"
+            if userdata['pwd'] == "test":
+                with open('data/roster_test.csv') as csv_file:
+                    data = csv.reader(csv_file, delimiter=',')
+                    roster = []
+                    for row in data:
+                        roster.append({
+                          "id": row[0],
+                          "name": row[1]
+                        })
+                return render_template("home.html", roster=roster)
+            else:
+                return render_template("wrongPass.html")
+
+
+            
+            
+            
 if __name__ == "__main__":
   app.run()
