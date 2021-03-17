@@ -341,32 +341,32 @@ def submitP():
 
 
 @app.route("/submitR", methods=["GET", "POST"])
-    def submitR():
-        if request.method == "GET":
-            return redirect(url_for('index'))
-        elif request.method == "POST":
-            #userdata = dict(request.form)
-            sess = {"name":session.get("name")}
-            return render_template("register.html", sess=sess)
+def submitR():
+    if request.method == "GET":
+        return redirect(url_for('index'))
+    elif request.method == "POST":
+        #userdata = dict(request.form)
+        sess = {"name":session.get("name")}
+        return render_template("register.html", sess=sess)
                     
 @app.route("/submitM", methods=["GET", "POST"])
-    def submitM():
-        if request.method == "GET":
-            return redirect(url_for('index'))
-        elif request.method == "POST":
-            #userdata = dict(request.form)
-            sess = {"name":session.get("name")}
-            return render_template("enter.html", sess=sess)
+def submitM():
+    if request.method == "GET":
+        return redirect(url_for('index'))
+    elif request.method == "POST":
+        #userdata = dict(request.form)
+        sess = {"name":session.get("name")}
+        return render_template("enter.html", sess=sess)
  
                         
 @app.route("/submitS", methods=["GET", "POST"])
-    def submitS():
-        if request.method == "GET":
-            return redirect(url_for('index'))
-        elif request.method == "POST":
-            #userdata = dict(request.form)
-            sess = {"name":session.get("name")}
-            return render_template("standings.html", sess=sess)
+def submitS():
+    if request.method == "GET":
+        return redirect(url_for('index'))
+    elif request.method == "POST":
+        #userdata = dict(request.form)
+        sess = {"name":session.get("name")}
+        return render_template("standings.html", sess=sess)
 
                         
 if __name__ == "__main__":
