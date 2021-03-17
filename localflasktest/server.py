@@ -46,7 +46,7 @@ def submit():
         
     with open('data/roster_test.csv',  newline="\n", mode='a') as csv_file:
         data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        data.writerow([newid, newname])
+        data.writerow([newid, newname, userdata["city"],userdata["contact"]])
     return render_template("submit.html")#f"You have been added to the roster!"# \n Return to main webapge: {url_for('index')}"
 
 
