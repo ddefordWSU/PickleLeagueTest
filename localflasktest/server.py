@@ -96,6 +96,9 @@ def submitI():
         for game in matches:
 
             game = [int(x) for x in game]
+            
+            print(matches)
+            print(game)
 
             game = [game[0],(game[1],game[2],game[3]),(game[4],game[5],game[6])]
 
