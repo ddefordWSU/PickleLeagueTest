@@ -72,11 +72,14 @@ def submitI():
     if request.method == "GET":
         return redirect(url_for('index'))
     elif request.method == "POST":
-        with open("./data/matches_test.csv",'r') as f:
+        
+        suff = session.get("suff")
+        
+        with open(f"./data/matches_{suff}.csv",'r') as f:
             reader = csv.reader(f)
             matches = list(reader)
             
-        with open('data/roster_test.csv') as csv_file:
+        with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = {}
             for row in data:
@@ -129,11 +132,13 @@ def submitT():
     if request.method == "GET":
         return redirect(url_for('index'))
     elif request.method == "POST":
-        with open("./data/matches_test.csv",'r') as f:
+        suff = session.get("suff")
+   
+        with open(f"./data/matches_{suff}.csv",'r') as f:
             reader = csv.reader(f)
             matches = list(reader)
             
-        with open('data/roster_test.csv') as csv_file:
+        with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = {}
             for row in data:
@@ -187,11 +192,13 @@ def submitH():
     if request.method == "GET":
         return redirect(url_for('index'))
     elif request.method == "POST":
-        with open("./data/matches_test.csv",'r') as f:
+        suff = session.get("suff")
+        
+        with open("./data/matches_{suff}.csv",'r') as f:
             reader = csv.reader(f)
             matches = list(reader)
             
-        with open('data/roster_test.csv') as csv_file:
+        with open('data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = {}
             for row in data:
