@@ -384,6 +384,30 @@ def submitS():
         sess = {"name":session.get("name")}
         return render_template("standings.html", sess=sess)
 
+    
+@app.route("/goHome", methods=["GET", "POST"])
+def goHome():
+    if request.method == "GET":
+        return redirect(url_for('index'))
+    elif request.method == "POST":
+        #userdata = dict(request.form)
+        sess = {"name":session.get("name")}
+        suff = session.get("suff")
+        
+        with open(f'data/roster_{suff}.csv') as csv_file:
+            data = csv.reader(csv_file, delimiter=',')
+            roster = []
+            for row in data:
+                roster.append({
+                  "id": row[0],
+                  "name": row[1],
+                  "city": row[2],
+                  "contact": row[3]            
+                })
+
+        
+        return render_template("home.html", roster=roster, sess=sess)
+
                         
 if __name__ == "__main__":
   app.run()
