@@ -105,16 +105,20 @@ def submitI():
             for i in range(2):
                 pair = game[i+1]
                 g_dict[pair[0]] +=1
+                g_dict[pair[1]] +=1
                 g_dict_p[(pair[0],pair[1])] +=1
                 g_dict_p[(pair[1],pair[0])] +=1
 
                 if pair[2] ==11:
                     w_dict[pair[0]] +=1
+                    w_dict[pair[1]] +=1
                     w_dict_p[(pair[0],pair[1])] +=1
                     p_dict[pair[0]] +=11
+                    p_dict[pair[1]] +=11
                     p_dict_p[(pair[0],pair[1])] +=11
                 else:
                     p_dict[pair[0]] += pair[2]
+                    p_dict[pair[1]] += pair[2]
                     p_dict_p[(pair[0],pair[1])] +=pair[2]
 
         plist = []
