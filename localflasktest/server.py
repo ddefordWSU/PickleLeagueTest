@@ -31,7 +31,8 @@ def submit():
     if request.method == "GET":
         return redirect(url_for('index'))
     elif request.method == "POST":
-        with open('data/roster_test.csv') as csv_file:
+        suff = session.get("suff")
+        with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = []
             for row in data:
@@ -44,7 +45,7 @@ def submit():
         newname = userdata["fname"] +" " + userdata["lname"][0] +"."
         newid = str(len(roster) + 1)
         
-    with open('data/roster_test.csv',  newline="\n", mode='a') as csv_file:
+    with open(f'data/roster_{suff}.csv',  newline="\n", mode='a') as csv_file:
         data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         data.writerow([newid, newname, userdata["city"],userdata["contact"]])
     return render_template("submit.html")#f"You have been added to the roster!"# \n Return to main webapge: {url_for('index')}"
@@ -55,14 +56,15 @@ def submit2():
     if request.method == "GET":
         return redirect(url_for('index'))
     elif request.method == "POST":
-        with open("./data/matches_test.csv",'r') as f:
+        suff = session.get("suff")
+        with open(f"./data/matches_{suff}.csv",'r') as f:
             reader = csv.reader(f)
             matches = list(reader)
 
                 
         userdata = dict(request.form)
         
-    with open('data/matches_test.csv',  newline="\n", mode='a') as csv_file:
+    with open(f'data/matches_{suff}.csv',  newline="\n", mode='a') as csv_file:
         data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         data.writerow([len(matches),userdata["p1"],userdata["p2"],userdata["s1"],userdata["p3"],userdata["p4"],userdata["s2"]])
     return  render_template("submit.html")#f"Your match has been recorded as match ID #: {len(matches)}"# \n Return to main webpage: {url_for('index')}"
@@ -97,8 +99,8 @@ def submitI():
 
             game = [int(x) for x in game]
             
-            print(matches)
-            print(game)
+            #print(matches)
+            #print(game)
 
             game = [game[0],(game[1],game[2],game[3]),(game[4],game[5],game[6])]
 
