@@ -63,6 +63,24 @@ def submit2():
 
                 
         userdata = dict(request.form)
+        plist= list(set([userdata["p1"],userdata["p2"],userdata["p3"],userdata["p4"]]))
+        if len(plist)  < 4:
+            render_template("fourplayer.html")
+            
+            
+        with open(f'data/roster_{suff}.csv') as csv_file:
+            data = csv.reader(csv_file, delimiter=',')
+            roster = []
+            for row in data:
+                roster.append({
+                "id": row[0],
+                })   
+        
+        roster_keys = list(roster.keys())
+        for person in plist:
+            if person not in roster_keys:
+                render_template("noplayer.html")
+                
         
     with open(f'data/matches_{suff}.csv',  newline="\n", mode='a') as csv_file:
         data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
