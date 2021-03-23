@@ -110,6 +110,9 @@ def submitI():
             reader = csv.reader(f)
             matches = list(reader)
             
+        if len(matches) == 0:
+            return render_template("nomatches.html")
+            
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = {}
@@ -176,6 +179,9 @@ def submitT():
             reader = csv.reader(f)
             matches = list(reader)
             
+        if len(matches) == 0:
+            return render_template("nomatches.html")
+            
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = {}
@@ -189,6 +195,8 @@ def submitT():
         g_dict_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
         w_dict_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
         p_dict_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
+        
+        
 
         for game in matches:
 
@@ -236,6 +244,9 @@ def submitH():
         with open(f"./data/matches_{suff}.csv",'r') as f:
             reader = csv.reader(f)
             matches = list(reader)
+            
+        if len(matches) == 0:
+            return render_template("nomatches.html")
             
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
