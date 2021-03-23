@@ -12,7 +12,9 @@ app.secret_key = "1769"
 
 @app.before_request
 def log_the_request():
+    logger.info(flask.request.remote_addr)
     logger.info(request)
+    
     
 @app.route("/")
 def index():
@@ -511,7 +513,7 @@ if __name__ == "__main__":
     logger = logging.getLogger('waitress')
     logger.setLevel(logging.INFO)
     
-    handler = logging.FileHandler('app.log')
+    handler = logging.FileHandler('app2.log')
     
     serve(app, host="0.0.0.0", port=8080)
   #app.run()
