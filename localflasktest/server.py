@@ -12,7 +12,7 @@ app.secret_key = "1769"
 
 @app.before_request
 def log_the_request():
-    logger(request)
+    logger.info(request)
     
 @app.route("/")
 def index():
