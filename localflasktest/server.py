@@ -41,9 +41,15 @@ def submit():
                 "name": row[1]
                 })
                 
+        roster_keys = list(roster.keys())
+                
         userdata = dict(request.form)
         newname = userdata["fname"] +" " + userdata["lname"][0] +"."
         newid = str(len(roster) + 1)
+        
+        if newname in roster_keys:
+            render_template("doubleplayer.html")
+            
         
     with open(f'data/roster_{suff}.csv',  newline="\n", mode='a') as csv_file:
         data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -63,6 +69,24 @@ def submit2():
 
                 
         userdata = dict(request.form)
+        plist= list(set([userdata["p1"],userdata["p2"],userdata["p3"],userdata["p4"]]))
+        if len(plist)  < 4:
+            render_template("fourplayer.html")
+            
+            
+        with open(f'data/roster_{suff}.csv') as csv_file:
+            data = csv.reader(csv_file, delimiter=',')
+            roster = []
+            for row in data:
+                roster.append({
+                "id": row[0],
+                })   
+        
+        roster_keys = list(roster.keys())
+        for person in plist:
+            if person not in roster_keys:
+                render_template("noplayer.html")
+                
         
     with open(f'data/matches_{suff}.csv',  newline="\n", mode='a') as csv_file:
         data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -186,8 +210,9 @@ def submitT():
         tlist = []
         for x in roster.keys():
             for y in roster.keys():
-                if g_dict_p[(int(x),int(y))] > 0:
-                    tlist.append([(roster[x],roster[y]),(x,y),w_dict_p[(int(x),int(y))],p_dict_p[(int(x),int(y))],g_dict_p[(int(x),int(y))]])
+                if int(x) < int(y):
+                    if g_dict_p[(int(x),int(y))] > 0:
+                        tlist.append([(roster[x],roster[y]),(x,y),w_dict_p[(int(x),int(y))],p_dict_p[(int(x),int(y))],g_dict_p[(int(x),int(y))]])
         
         tlist.sort(key=lambda x:(x[2],x[3]))
         tlist.reverse()
@@ -203,11 +228,11 @@ def submitH():
     elif request.method == "POST":
         suff = session.get("suff")
         
-        with open("./data/matches_{suff}.csv",'r') as f:
+        with open(f"./data/matches_{suff}.csv",'r') as f:
             reader = csv.reader(f)
             matches = list(reader)
             
-        with open('data/roster_{suff}.csv') as csv_file:
+        with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = {}
             for row in data:
@@ -279,6 +304,11 @@ def submitP():
         return redirect(url_for('index'))
     elif request.method == "POST":
         userdata = dict(request.form)
+        
+        if not userdata['League']:
+            return render_template("noLeague.html")
+            
+        
         if userdata['League'] == "LINT":
             session["name"] = "Lewiston Intermediate League"
             session["suff"] = "LINT"
@@ -336,6 +366,25 @@ def submitP():
             else:
                 return render_template("wrongPass.html")               
 
+        if userdata['League'] == "PT":
+            session["name"] = "Pullman 4.0+ Tournament"
+            session["suff"] = "PT"
+            sess ={"name":"Pullman 4.0+ Tournament"}
+            if userdata['pwd'] == "PTPASS":
+                with open('data/roster_PT.csv') as csv_file:
+                    data = csv.reader(csv_file, delimiter=',')
+                    roster = []
+                    for row in data:
+                        roster.append({
+                          "id": row[0],
+                          "name": row[1],
+                          "city": row[2],
+                          "contact": row[3]            
+                        })
+                    return render_template("home.html", roster=roster,sess=sess)
+            else:
+                return render_template("wrongPass.html")               
+            
         if userdata['League'] == "T":
             session["name"] = "Test League"
             session["suff"] = "test"
@@ -370,9 +419,22 @@ def submitM():
     if request.method == "GET":
         return redirect(url_for('index'))
     elif request.method == "POST":
+        sess = {"name":session.get("name")}
+        suff = session.get("suff")
+        
+        with open(f'data/roster_{suff}.csv') as csv_file:
+            data = csv.reader(csv_file, delimiter=',')
+            roster = []
+            for row in data:
+                roster.append({
+                  "id": row[0],
+                  "name": row[1],
+                  "city": row[2],
+                  "contact": row[3]            
+                })
         #userdata = dict(request.form)
         sess = {"name":session.get("name")}
-        return render_template("enter.html", sess=sess)
+        return render_template("enter.html", roster=roster, sess=sess)
  
                         
 @app.route("/submitS", methods=["GET", "POST"])
