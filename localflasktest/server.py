@@ -23,9 +23,6 @@ def index():
             })
     return render_template("index.html", roster=roster)
 
-#def hello():
-#  return render_template("index.html")
-
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
     if request.method == "GET":
@@ -35,20 +32,23 @@ def submit():
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = []
+            roster_keys = []
             for row in data:
                 roster.append({
                 "id": row[0],
                 "name": row[1]
                 })
+                roster_keys.append(row[1])
                 
-        roster_keys = list(roster.keys())
-                
+        
+        #print(roster_keys)      
         userdata = dict(request.form)
         newname = userdata["fname"] +" " + userdata["lname"][0] +"."
+        #print(newname)
         newid = str(len(roster) + 1)
         
         if newname in roster_keys:
-            render_template("doubleplayer.html")
+            return render_template("doubleplayer.html")
             
         
     with open(f'data/roster_{suff}.csv',  newline="\n", mode='a') as csv_file:
@@ -71,22 +71,27 @@ def submit2():
         userdata = dict(request.form)
         plist= list(set([userdata["p1"],userdata["p2"],userdata["p3"],userdata["p4"]]))
         if len(plist)  < 4:
-            render_template("fourplayer.html")
+            return render_template("fourplayer.html")
             
             
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = []
+            roster_keys = []
             for row in data:
+                roster_keys.append(row[0])
                 roster.append({
                 "id": row[0],
                 })   
         
-        roster_keys = list(roster.keys())
+        #print(roster_keys)
         for person in plist:
             if person not in roster_keys:
-                render_template("noplayer.html")
+                return render_template("noplayer.html")
                 
+    
+        if 11 not in [int(userdata["s1"]),int(userdata["s2"])]:
+            return render_template("no11.html")
         
     with open(f'data/matches_{suff}.csv',  newline="\n", mode='a') as csv_file:
         data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -105,6 +110,11 @@ def submitI():
             reader = csv.reader(f)
             matches = list(reader)
             
+        if len(matches) == 0:
+            return render_template("nomatches.html")
+        if len(matches) == 1:
+            if len(matches[0])==0:
+                return render_template("nomatches.html")           
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = {}
@@ -171,6 +181,12 @@ def submitT():
             reader = csv.reader(f)
             matches = list(reader)
             
+        if len(matches) == 0:
+            return render_template("nomatches.html")
+        if len(matches) == 1:
+            if len(matches[0])==0:
+                return render_template("nomatches.html")           
+            
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = {}
@@ -184,6 +200,8 @@ def submitT():
         g_dict_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
         w_dict_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
         p_dict_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
+        
+        
 
         for game in matches:
 
@@ -231,6 +249,12 @@ def submitH():
         with open(f"./data/matches_{suff}.csv",'r') as f:
             reader = csv.reader(f)
             matches = list(reader)
+            
+        if len(matches) == 0:
+            return render_template("nomatches.html")
+        if len(matches) == 1:
+            if len(matches[0])==0:
+                return render_template("nomatches.html")           
             
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
@@ -305,8 +329,13 @@ def submitP():
     elif request.method == "POST":
         userdata = dict(request.form)
         
-        if not userdata['League']:
+        
+        try:
+            temp = userdata['League']
+        except KeyError:
             return render_template("noLeague.html")
+        #if not userdata['League']:
+        #    return render_template("noLeague.html")
             
         
         if userdata['League'] == "LINT":
@@ -472,4 +501,6 @@ def goHome():
 
                         
 if __name__ == "__main__":
-  app.run()
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
+  #app.run()
