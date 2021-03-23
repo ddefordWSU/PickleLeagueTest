@@ -41,7 +41,7 @@ def submit():
                 roster_keys.append(row[1])
                 
         
-                
+        print(roster_keys)      
         userdata = dict(request.form)
         newname = userdata["fname"] +" " + userdata["lname"][0] +"."
         newid = str(len(roster) + 1)
