@@ -10,6 +10,10 @@ app = Flask(__name__)
 #Session(app)
 app.secret_key = "1769"
 
+@app.before_request
+def log_the_request():
+    logger(request)
+    
 @app.route("/")
 def index():
     with open('data/roster_test.csv') as csv_file:
@@ -503,7 +507,9 @@ def goHome():
                         
 if __name__ == "__main__":
     from waitress import serve
-    logging.basicConfig(filename='app.log',level=logging.DEBUG)
+    #logging.basicConfig(filename='app.log',level=logging.DEBUG)
+    logger = logging.getLogger('waitress')
+    logger.setLevel(logging.INFO)
     
     serve(app, host="0.0.0.0", port=8080)
   #app.run()
