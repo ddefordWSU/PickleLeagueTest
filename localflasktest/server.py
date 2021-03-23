@@ -36,6 +36,7 @@ def submit():
         return redirect(url_for('index'))
     elif request.method == "POST":
         suff = session.get("suff")
+        
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = []
@@ -50,6 +51,9 @@ def submit():
         
         #print(roster_keys)      
         userdata = dict(request.form)
+        for k in list(userdata.keys()):
+            logger.info(userdata[k])
+        
         newname = userdata["fname"] +" " + userdata["lname"][0] +"."
         #print(newname)
         newid = str(len(roster) + 1)
@@ -76,6 +80,8 @@ def submit2():
 
                 
         userdata = dict(request.form)
+        for k in list(userdata.keys()):
+            logger.info(userdata[k])
         plist= list(set([userdata["p1"],userdata["p2"],userdata["p3"],userdata["p4"]]))
         if len(plist)  < 4:
             return render_template("fourplayer.html")
@@ -514,6 +520,7 @@ if __name__ == "__main__":
     logger.setLevel(logging.INFO)
     
     handler = logging.FileHandler('app2.log')
+    logger.addHandler(handler)
     
     serve(app, host="0.0.0.0", port=8080)
   #app.run()
