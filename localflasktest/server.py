@@ -41,9 +41,15 @@ def submit():
                 "name": row[1]
                 })
                 
+        roster_keys = list(roster.keys())
+                
         userdata = dict(request.form)
         newname = userdata["fname"] +" " + userdata["lname"][0] +"."
         newid = str(len(roster) + 1)
+        
+        if newname in roster_keys:
+            render_template("doubleplayer.html")
+            
         
     with open(f'data/roster_{suff}.csv',  newline="\n", mode='a') as csv_file:
         data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
