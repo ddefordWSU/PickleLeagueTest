@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 #from flask_session import Session
 import csv
 import json
+import logging
 
 app = Flask(__name__)
 #SESSION_TYPE = 'redis'
@@ -502,5 +503,7 @@ def goHome():
                         
 if __name__ == "__main__":
     from waitress import serve
+    logging.basicConfig(filename='app.log',level=logging.DEBUG)
+    
     serve(app, host="0.0.0.0", port=8080)
   #app.run()
