@@ -203,11 +203,11 @@ def submitH():
     elif request.method == "POST":
         suff = session.get("suff")
         
-        with open("./data/matches_{suff}.csv",'r') as f:
+        with open(f"./data/matches_{suff}.csv",'r') as f:
             reader = csv.reader(f)
             matches = list(reader)
             
-        with open('data/roster_{suff}.csv') as csv_file:
+        with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = {}
             for row in data:
@@ -370,9 +370,22 @@ def submitM():
     if request.method == "GET":
         return redirect(url_for('index'))
     elif request.method == "POST":
+        sess = {"name":session.get("name")}
+        suff = session.get("suff")
+        
+        with open(f'data/roster_{suff}.csv') as csv_file:
+            data = csv.reader(csv_file, delimiter=',')
+            roster = []
+            for row in data:
+                roster.append({
+                  "id": row[0],
+                  "name": row[1],
+                  "city": row[2],
+                  "contact": row[3]            
+                })
         #userdata = dict(request.form)
         sess = {"name":session.get("name")}
-        return render_template("enter.html", sess=sess)
+        return render_template("enter.html", roster=roster, sess=sess)
  
                         
 @app.route("/submitS", methods=["GET", "POST"])
