@@ -41,14 +41,14 @@ def submit():
                 roster_keys.append(row[1])
                 
         
-        print(roster_keys)      
+        #print(roster_keys)      
         userdata = dict(request.form)
         newname = userdata["fname"] +" " + userdata["lname"][0] +"."
-        print(newname)
+        #print(newname)
         newid = str(len(roster) + 1)
         
         if newname in roster_keys:
-            render_template("doubleplayer.html")
+            return render_template("doubleplayer.html")
             
         
     with open(f'data/roster_{suff}.csv',  newline="\n", mode='a') as csv_file:
@@ -71,7 +71,7 @@ def submit2():
         userdata = dict(request.form)
         plist= list(set([userdata["p1"],userdata["p2"],userdata["p3"],userdata["p4"]]))
         if len(plist)  < 4:
-            render_template("fourplayer.html")
+            return render_template("fourplayer.html")
             
             
         with open(f'data/roster_{suff}.csv') as csv_file:
@@ -84,11 +84,14 @@ def submit2():
                 "id": row[0],
                 })   
         
-        print(roster_keys)
+        #print(roster_keys)
         for person in plist:
             if person not in roster_keys:
-                render_template("noplayer.html")
+                return render_template("noplayer.html")
                 
+    
+        if 11 not in [int(userdata["s1"]),int(userdata["s2"])]:
+            return render_template("no11.html")
         
     with open(f'data/matches_{suff}.csv',  newline="\n", mode='a') as csv_file:
         data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
