@@ -31,6 +31,19 @@ padding: 15px;
     <p><input type="submit" value="Submit Match"></p>
 </form>
 
+	    <h2>
+      Current Roster
+	</h2> </div>
+	  <table id="t01" class="center">
+		  <tr><td><bf>ID#</bf></td><td><bf>   Name </bf></td><td><bf>   City </bf></td><td><bf>   Contact </bf></td></tr>
+	
+    {% for person in roster %}
+<tr>
+	<td>{{ person.id }} </td><td> {{ person.name }}</td><td> {{ person.city }}</td><td> {{ person.contact }}</td>
+    </tr>
+{% endfor %}
+	  </table>
+
 
     <form method="post" action="/goHome">
     <p><input type="submit" value="Return to league homepage"></p>
