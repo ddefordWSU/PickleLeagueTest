@@ -12,7 +12,7 @@ app.secret_key = "1769"
 
 @app.before_request
 def log_the_request():
-    logger.info(flask.request.remote_addr)
+    logger.info(request.remote_addr)
     logger.info(request)
     
     
