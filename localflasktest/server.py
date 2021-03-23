@@ -279,6 +279,11 @@ def submitP():
         return redirect(url_for('index'))
     elif request.method == "POST":
         userdata = dict(request.form)
+        
+        if not userdata['League']:
+            return render_template("noLeague.html")
+            
+        
         if userdata['League'] == "LINT":
             session["name"] = "Lewiston Intermediate League"
             session["suff"] = "LINT"
