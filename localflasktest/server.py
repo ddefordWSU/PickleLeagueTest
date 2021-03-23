@@ -336,6 +336,25 @@ def submitP():
             else:
                 return render_template("wrongPass.html")               
 
+        if userdata['League'] == "PT":
+            session["name"] = "Pullman 4.0+ Tournament"
+            session["suff"] = "PT"
+            sess ={"name":"Pullman 4.0+ Tournament"}
+            if userdata['pwd'] == "PTPASS":
+                with open('data/roster_PT.csv') as csv_file:
+                    data = csv.reader(csv_file, delimiter=',')
+                    roster = []
+                    for row in data:
+                        roster.append({
+                          "id": row[0],
+                          "name": row[1],
+                          "city": row[2],
+                          "contact": row[3]            
+                        })
+                    return render_template("home.html", roster=roster,sess=sess)
+            else:
+                return render_template("wrongPass.html")               
+            
         if userdata['League'] == "T":
             session["name"] = "Test League"
             session["suff"] = "test"
