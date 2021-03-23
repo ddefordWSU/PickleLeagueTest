@@ -23,9 +23,6 @@ def index():
             })
     return render_template("index.html", roster=roster)
 
-#def hello():
-#  return render_template("index.html")
-
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
     if request.method == "GET":
@@ -86,7 +83,7 @@ def submit2():
                 "id": row[0],
                 })   
         
-        
+        print(roster_keys)
         for person in plist:
             if person not in roster_keys:
                 render_template("noplayer.html")
