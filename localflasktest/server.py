@@ -44,6 +44,7 @@ def submit():
         print(roster_keys)      
         userdata = dict(request.form)
         newname = userdata["fname"] +" " + userdata["lname"][0] +"."
+        print(newname)
         newid = str(len(roster) + 1)
         
         if newname in roster_keys:
