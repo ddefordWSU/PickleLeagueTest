@@ -305,8 +305,13 @@ def submitP():
     elif request.method == "POST":
         userdata = dict(request.form)
         
-        if not userdata['League']:
+        
+        try:
+            temp = userdata['League']
+        except KeyError:
             return render_template("noLeague.html")
+        #if not userdata['League']:
+        #    return render_template("noLeague.html")
             
         
         if userdata['League'] == "LINT":
