@@ -35,13 +35,15 @@ def submit():
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = []
+            roster_keys = []
             for row in data:
                 roster.append({
                 "id": row[0],
                 "name": row[1]
                 })
+                roster_keys.append(row[1])
                 
-        roster_keys = list(roster.keys())
+        
                 
         userdata = dict(request.form)
         newname = userdata["fname"] +" " + userdata["lname"][0] +"."
@@ -77,12 +79,14 @@ def submit2():
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = []
+            roster_keys = []
             for row in data:
+                roster_keys.append(row[0])
                 roster.append({
                 "id": row[0],
                 })   
         
-        roster_keys = list(roster.keys())
+        
         for person in plist:
             if person not in roster_keys:
                 render_template("noplayer.html")
