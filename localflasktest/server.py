@@ -112,7 +112,9 @@ def submitI():
             
         if len(matches) == 0:
             return render_template("nomatches.html")
-            
+        if len(matches) == 1:
+            if len(matches[0])==0:
+                return render_template("nomatches.html")           
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
             roster = {}
@@ -181,6 +183,9 @@ def submitT():
             
         if len(matches) == 0:
             return render_template("nomatches.html")
+        if len(matches) == 1:
+            if len(matches[0])==0:
+                return render_template("nomatches.html")           
             
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
@@ -247,6 +252,9 @@ def submitH():
             
         if len(matches) == 0:
             return render_template("nomatches.html")
+        if len(matches) == 1:
+            if len(matches[0])==0:
+                return render_template("nomatches.html")           
             
         with open(f'data/roster_{suff}.csv') as csv_file:
             data = csv.reader(csv_file, delimiter=',')
