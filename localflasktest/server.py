@@ -52,7 +52,7 @@ def submit():
         #print(roster_keys)      
         userdata = dict(request.form)
         for k in list(userdata.keys()):
-            logger.info(userdata[k])
+            logger.info(str(k)+str(userdata[k]))
         
         newname = userdata["fname"] +" " + userdata["lname"][0] +"."
         #print(newname)
@@ -81,7 +81,7 @@ def submit2():
                 
         userdata = dict(request.form)
         for k in list(userdata.keys()):
-            logger.info(userdata[k])
+            logger.info(str(k)+str(userdata[k]))
         plist= list(set([userdata["p1"],userdata["p2"],userdata["p3"],userdata["p4"]]))
         if len(plist)  < 4:
             return render_template("fourplayer.html")
