@@ -348,12 +348,12 @@ def submitH():
         if h2h_g[(int(x),int(y)) = 0:
                  return render_template("NoHead.html")
         
-        tlist.append([(roster[x],roster[y]),(x,y),h2h_w[(int(x),int(y))],h2h_p[(int(x),int(y))],h2h_g[(int(x),int(y))]])
+        tlist.append([(roster[x],'vs',roster[y]),(x,'vs',y),h2h_w[(int(x),int(y))],h2h_p[(int(x),int(y))],h2h_p[(int(y),int(x))],h2h_g[(int(x),int(y))]])
         
         #tlist.sort(key=lambda x:(x[2],x[3]))
         #tlist.reverse()
         for t in tlist:
-            Hlist.append({"name":t[0],"id":t[1],"wins":t[2],"points":t[3],"games":t[4]})
+            Hlist.append({"name":t[0],"id":t[1],"wins":t[2],"points":t[3],"pointsagainst":t[4],"games":t[5]})
                               
         return render_template("statsH2H.html", Hlist=Hlist)                          
 
