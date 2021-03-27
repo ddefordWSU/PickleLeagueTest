@@ -345,7 +345,7 @@ def submitH():
         x = userdata["player1"][0]
         y = userdata["player2"][0]
         
-        if h2h_g[(int(x),int(y)) = 0:
+        if h2h_g[(int(x),int(y)) == 0:
                  return render_template("NoHead.html")
         
         tlist.append([(roster[x],'vs',roster[y]),(x,'vs',y),h2h_w[(int(x),int(y))],h2h_p[(int(x),int(y))],h2h_p[(int(y),int(x))],h2h_g[(int(x),int(y))]])
