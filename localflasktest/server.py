@@ -78,6 +78,7 @@ def submit2():
             reader = csv.reader(f)
             matches = list(reader)
 
+            
                 
         userdata = dict(request.form)
         for k in list(userdata.keys()):
@@ -105,6 +106,13 @@ def submit2():
     
         if 11 not in [int(userdata["s1"]),int(userdata["s2"])]:
             return render_template("no11.html")
+
+        if len(matches) == 0:
+             with open(f'data/matches_{suff}.csv',  newline="\n") as csv_file:
+                data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                data.writerow([len(matches),userdata["p1"],userdata["p2"],userdata["s1"],userdata["p3"],userdata["p4"],userdata["s2"]])
+            return  render_template("submit.html")#f"Your match has been recorded as match ID #: {len(matches)}"# \n Return to main webpage: {url_for('index')}"
+        
         
     with open(f'data/matches_{suff}.csv',  newline="\n", mode='a') as csv_file:
         data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
