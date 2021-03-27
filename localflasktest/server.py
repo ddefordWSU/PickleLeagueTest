@@ -111,7 +111,7 @@ def submit2():
              with open(f'data/matches_{suff}.csv',  newline="\n") as csv_file:
                 data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
                 data.writerow([len(matches),userdata["p1"],userdata["p2"],userdata["s1"],userdata["p3"],userdata["p4"],userdata["s2"]])
-            return  render_template("submit.html")#f"Your match has been recorded as match ID #: {len(matches)}"# \n Return to main webpage: {url_for('index')}"
+             return  render_template("submit.html")#f"Your match has been recorded as match ID #: {len(matches)}"# \n Return to main webpage: {url_for('index')}"
         
         
     with open(f'data/matches_{suff}.csv',  newline="\n", mode='a') as csv_file:
