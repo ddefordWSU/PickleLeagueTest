@@ -225,6 +225,9 @@ def submitT():
         w_dict_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
         p_dict_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
         
+        if len(matches[0]) < 6:
+            matches.pop(0)
+
         
 
         for game in matches:
@@ -294,6 +297,11 @@ def submitH():
         h2h_w = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
         h2h_p = {(int(x),int(y)):0 for x in roster.keys() for y in roster.keys()}
 
+        if len(matches[0]) < 6:
+            matches.pop(0)
+
+    
+        
         for game in matches:
 
             game = [int(x) for x in game]
