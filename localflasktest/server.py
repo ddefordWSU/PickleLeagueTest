@@ -308,7 +308,7 @@ def submitH():
 
             game = [game[0],(game[1],game[2],game[3]),(game[4],game[5],game[6])]
 
-            for i in range(2):
+            for i in range(1):
                 h2h_g[(game[1][0],game[2][0])] += 1
                 h2h_g[(game[1][0],game[2][1])] += 1
                 h2h_g[(game[1][1],game[2][0])] += 1
