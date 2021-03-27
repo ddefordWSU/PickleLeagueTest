@@ -345,6 +345,9 @@ def submitH():
         x = userdata["player1"][0]
         y = userdata["player2"][0]
         
+        if h2h_g[(int(x),int(y)) = 0:
+                 return render_template("NoHead.html")
+        
         tlist.append([(roster[x],roster[y]),(x,y),h2h_w[(int(x),int(y))],h2h_p[(int(x),int(y))],h2h_g[(int(x),int(y))]])
         
         #tlist.sort(key=lambda x:(x[2],x[3]))
