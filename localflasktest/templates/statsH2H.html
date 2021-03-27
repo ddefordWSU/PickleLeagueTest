@@ -20,10 +20,10 @@ padding: 10px;
   <h3>Current League Standings</h3>
   
 <table id="t01">
-  <tr> <td>  Name </td><td> ID# </td><td>Wins</td><td> Points </td><td> Games </td>
+  <tr> <td>  Name </td><td> ID# </td><td>Wins</td><td> Points Scored</td><td> Points Against </td><td> Games </td></tr>
     {% for H in Hlist %}
     <tr>
-      <td>  {{ H.name }} </td><td> {{ H.id }} </td><td> {{ H.wins }} </td><td> {{ H.points }} </td><td> {{ H.games }} </td>
+      <td>  {{ H.name }} </td><td> {{ H.id }} </td><td> {{ H.wins }} </td><td> {{ H.points }} </td><td> {{ H.pointsagainst }} </td><td> {{ H.games }} </td>
     </tr>
 {% endfor %}
     </table>
