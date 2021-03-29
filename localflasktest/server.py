@@ -542,9 +542,9 @@ def submitRR():
         
         
 
-	    url = f"http://math.wsu.edu/faculty/ddeford/PB_Brackets/pb{n}.json"
-	    r = requests.get(url)
-	    wdict = r.json()
+        url = f"http://math.wsu.edu/faculty/ddeford/PB_Brackets/pb{n}.json"
+	r = requests.get(url)
+	wdict = r.json()
         
         courts = math.floor(n/4)
         byes = n%4
