@@ -538,7 +538,7 @@ def submitRR():
     elif request.method == "POST":
         userdata = dict(request.form)
         n = int(userdata['numplay'])
-        names = list(range(1,n+1))
+        names = [str(x) for x in range(1,n+1)]
         
         if n < 4 or n > 24:
             return render_template("RRwrong.html")
