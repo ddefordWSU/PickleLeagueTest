@@ -543,35 +543,34 @@ def submitRR():
         
 
         url = f"http://math.wsu.edu/faculty/ddeford/PB_Brackets/pb{n}.json"
-	r = requests.get(url)
-	wdict = r.json()
+        r = requests.get(url)
+        wdict = r.json()
         
         courts = math.floor(n/4)
         byes = n%4
 
         rows = [['Court ' + str(x+1) for x in range(courts)]]
         if byes > 0: 
-            rows[0].append('Bye(s)')
+        	rows[0].append('Bye(s)')
         rows[0].insert(0,'Round')
 
         for i in range(len(wdict[str(n)])):
-            rows.append([])
-            row = wdict[str(n)][i]
-            for j in range(courts):
+        	rows.append([])
+        	row = wdict[str(n)][i]
+        	for j in range(courts):
                 #print(courts)
                 #print(row)
 
-                rows[-1].append(names[row[j][0][0]] + '/' + names[row[j][0][1]] + " vs. " + names[row[j][1][0]] + '/' + names[row[j][1][1]])
+        		rows[-1].append(names[row[j][0][0]] + '/' + names[row[j][0][1]] + " vs. " + names[row[j][1][0]] + '/' + names[row[j][1][1]])
                 #print(rows)
-            if byes >0: 
-                rows[-1].append(names[row[-1][0]])
+        	if byes >0: 
+        		rows[-1].append(names[row[-1][0]])
+        		for k in range(1,byes):
+        			rows[-1][-1] = rows[-1][-1] + " " + (names[row[-1][k]])
 
-                for k in range(1,byes):
-                    rows[-1][-1] = rows[-1][-1] + " " + (names[row[-1][k]])
-
-            rows[-1].insert(0,str(i+1))
+        	rows[-1].insert(0,str(i+1))
             
-            return render_template("RR.html", plist=rows)
+        return render_template("RR.html", plist=rows)
     
 @app.route("/goHome", methods=["GET", "POST"])
 def goHome():
