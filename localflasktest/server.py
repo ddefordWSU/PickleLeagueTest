@@ -4,6 +4,7 @@ import csv
 import json
 import logging
 import requests
+import math
 
 app = Flask(__name__)
 #SESSION_TYPE = 'redis'
