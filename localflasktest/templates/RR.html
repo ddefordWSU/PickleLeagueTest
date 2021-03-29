@@ -8,23 +8,21 @@
     #t01 {
   width: 100%;
       border-spacing: 5px;
-padding: 10px;
+padding: 15px;
     border: 1px solid black;
 } 
     </style>
   </head>
   <body>
   
-  <h1>Head to Head</h1>
-  
-  <h3>Current League Standings</h3>
-  
+  <h1>Round Robin Rounds</h1>
+    
 <table id="t01">
-  <tr> <td>  Name </td><td> ID# </td><td>Wins</td><td> Points Scored</td><td> Points Against </td><td> Games </td></tr>
-    {% for H in Hlist %}
+    {% for person in plist %}
     <tr>
-      <td>  {{ H.name }} </td><td> {{ H.id }} </td><td> {{ H.wins }} </td><td> {{ H.points }} </td><td> {{ H.pointsagainst }} </td><td> {{ H.games }} </td>
-    </tr>
+ {% for val in person %}
+                <td>{{ val }}</td>
+            {% endfor %}    </tr>
 {% endfor %}
     </table>
 
