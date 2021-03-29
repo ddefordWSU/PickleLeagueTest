@@ -535,7 +535,7 @@ def submitRR():
         return redirect(url_for('index'))
     elif request.method == "POST":
         userdata = dict(request.form)
-        n = userdata['numplay']
+        n = int(userdata['numplay'])
         
         if n < 4 or n > 24:
             return render_template("RRwrong.html")
