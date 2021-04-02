@@ -86,8 +86,8 @@ def submit2():
         for k in list(userdata.keys()):
             logger.info(str(suff)+" "+str(k)+" "+str(userdata[k]))
         plist= list(set([userdata["p1"],userdata["p2"],userdata["p3"],userdata["p4"]]))
-        if len(plist)  < 4:
-            return render_template("fourplayer.html")
+        #if len(plist)  < 4:
+        #    return render_template("fourplayer.html")
             
             
         with open(f'data/roster_{suff}.csv') as csv_file:
