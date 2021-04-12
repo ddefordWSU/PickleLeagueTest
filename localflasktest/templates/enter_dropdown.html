@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pickle League Registration</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+	  <style>
+    #t01 {
+      border-spacing: 5px;
+padding: 15px;
+    border: 1px solid black;
+} 
+    </style>
+  </head>
+  <body>
+  
+ </p>
+ 
+<h2> Record Match Result </h2>
+
+<p> Enter the ID#s and score for your match below. If your match included a non-league player, enter 0 for their ID#. League matches should be scored as one game to 11, win by 1. The current roster with ID labels is displayed below for reference.     </p>
+
+<form method="post" action="/submit2">
+
+<label for="p1">Team 1 Player 1</label>
+ <select id="p1" name="p1"> 
+{% for person in roster %}
+<option value= {{ person.id }}>{{ person.name }}</option>
+{% endfor %}
+</select>
+<br>
+
+<label for="p2">Team 1 Player 2</label>
+ <select id="p2" name="p2"> 
+{% for person in roster %}
+<option value= {{ person.id }}>{{ person.name }}</option>
+{% endfor %}
+</select>
+<br>
+
+
+<label for="p3">Team 2 Player 1</label>
+ <select id="p3" name="p3"> 
+{% for person in roster %}
+<option value= {{ person.id }}>{{ person.name }}</option>
+{% endfor %}
+</select>
+<br>
+
+
+<label for="p4">Team 2 Player 2</label>
+ <select id="p4" name="p4"> 
+{% for person in roster %}
+<option value= {{ person.id }}>{{ person.name }}</option>
+{% endfor %}
+</select>
+	<br>
+
+
+<label for="s1">Team 1 Score</label>
+ <select id="s1" name="s1"> 
+<option value= 0>0</option>
+<option value= 1>1</option>
+<option value= 2>2</option>
+<option value= 3>3</option>
+<option value= 4>4</option>
+<option value= 5>5</option>
+<option value= 6>6</option>
+<option value= 7>7</option>
+<option value= 8>8</option>
+<option value= 9>9</option>
+<option value= 10>10</option>
+<option value= 11>11</option>
+
+</select>
+<br>
+
+
+	
+<label for="s2">Team 2 Score</label>
+ <select id="s2" name="s2"> 
+<option value= 0>0</option>
+<option value= 1>1</option>
+<option value= 2>2</option>
+<option value= 3>3</option>
+<option value= 4>4</option>
+<option value= 5>5</option>
+<option value= 6>6</option>
+<option value= 7>7</option>
+<option value= 8>8</option>
+<option value= 9>9</option>
+<option value= 10>10</option>
+<option value= 11>11</option>
+
+</select>
+	<br>
+
+
+
+    <p><input type="submit" value="Submit Match"></p>
+</form>
+
+	    <h2>
+      Current Roster
+	</h2> </div>
+	  <table id="t01" class="center">
+		  <tr><td><bf>ID#</bf></td><td><bf>   Name </bf></td><td><bf>   City </bf></td><td><bf>   Contact </bf></td></tr>
+	
+    {% for person in roster %}
+<tr>
+	<td>{{ person.id }} </td><td> {{ person.name }}</td><td> {{ person.city }}</td><td> {{ person.contact }}</td>
+    </tr>
+{% endfor %}
+	  </table>
+
+
+    <form method="post" action="/goHome">
+    <p><input type="submit" value="Return to league homepage"></p>
+</form>
+
+  </body>
+</html>
