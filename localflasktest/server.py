@@ -543,7 +543,12 @@ def submitRR():
         return redirect(url_for('index'))
     elif request.method == "POST":
         userdata = dict(request.form)
-        n = int(userdata['numplay'])
+        
+        try:
+            n = int(userdata['numplay'])
+        except KeyError as e:
+            return render_template("RRwrong.html")
+            
         names = [str(x) for x in range(1,n+1)]
         
         if n < 4 or n > 24:
