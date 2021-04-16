@@ -547,7 +547,7 @@ def submitRR():
         
         n = userdata['numplay']
         
-        if n == "''":
+        if n == '':
             return render_template("RRwrong.html")
         n= int(n)
         
