@@ -12,12 +12,12 @@ app = Flask(__name__)
 #Session(app)
 app.secret_key = "1769"
 
-"""
+#"""
 @app.before_request
 def log_the_request():
     logger.info(request.remote_addr)
     logger.info(request)
-"""    
+#"""    
     
 @app.route("/")
 def index():
