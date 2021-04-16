@@ -544,10 +544,14 @@ def submitRR():
     elif request.method == "POST":
         userdata = dict(request.form)
         
-        try:
-            n = int(userdata['numplay'])
-        except KeyError as e:
+        
+        n = userdata['numplay']
+        
+        if n == "''":
             return render_template("RRwrong.html")
+        n= int(n)
+        
+        
             
         names = [str(x) for x in range(1,n+1)]
         
