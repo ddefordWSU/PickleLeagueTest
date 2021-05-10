@@ -12,11 +12,12 @@ app = Flask(__name__)
 #Session(app)
 app.secret_key = "1769"
 
+#"""
 @app.before_request
 def log_the_request():
     logger.info(request.remote_addr)
     logger.info(request)
-    
+#"""    
     
 @app.route("/")
 def index():
@@ -83,11 +84,16 @@ def submit2():
             
                 
         userdata = dict(request.form)
+        #"""Readd for wsgi
         for k in list(userdata.keys()):
             logger.info(str(suff)+" "+str(k)+" "+str(userdata[k]))
+        #"""
         plist= list(set([userdata["p1"],userdata["p2"],userdata["p3"],userdata["p4"]]))
-        if len(plist)  < 4:
-            return render_template("fourplayer.html")
+        
+        
+        
+        #if len(plist)  < 4:
+        #    return render_template("fourplayer.html")
             
             
         with open(f'data/roster_{suff}.csv') as csv_file:
@@ -519,7 +525,7 @@ def submitM():
                 })
         #userdata = dict(request.form)
         sess = {"name":session.get("name")}
-        return render_template("enter.html", roster=roster, sess=sess)
+        return render_template("enter_dropdown.html", roster=roster, sess=sess)
  
                         
 @app.route("/submitS", methods=["GET", "POST"])
@@ -537,7 +543,16 @@ def submitRR():
         return redirect(url_for('index'))
     elif request.method == "POST":
         userdata = dict(request.form)
-        n = int(userdata['numplay'])
+        
+        
+        n = userdata['numplay']
+        
+        if n == '':
+            return render_template("RRwrong.html")
+        n= int(n)
+        
+        
+            
         names = [str(x) for x in range(1,n+1)]
         
         if n < 4 or n > 24:
@@ -609,4 +624,4 @@ if __name__ == "__main__":
     logger.addHandler(handler)
     
     serve(app, host="0.0.0.0", port=8080)
-  #app.run()
+    #app.run() #recomment for wsgi
