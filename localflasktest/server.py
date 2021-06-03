@@ -458,9 +458,9 @@ def submitP():
                 return render_template("wrongPass.html")               
 
         if userdata['League'] == "PT":
-            session["name"] = "Pullman 4.0+ Tournament"
+            session["name"] = "Pullman Intermediate Tournament"
             session["suff"] = "PT"
-            sess ={"name":"Pullman 4.0+ Tournament"}
+            sess ={"name":"Pullman Intermediate Tournament"}
             if userdata['pwd'] == "PTPASS":
                 with open('data/roster_PT.csv') as csv_file:
                     data = csv.reader(csv_file, delimiter=',')
